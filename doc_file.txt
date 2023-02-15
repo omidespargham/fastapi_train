@@ -1,0 +1,23 @@
+for alembic instaltion should use:
+pip install Alembic
+################
+init migrations :
+alembic init folder_name(migrations)
+########################
+2 steps for connect the alembic to our database
+
+change alembic.ini file and add sql url from SQLALCHEMY_URL
+
+change env.py :
+from models import Base
+target_metadata = Base.metadata
+###################
+
+make the migrations from models 
+
+alembic revision --autogenerate -m "the message for migrations"
+
+migrate the migrations
+
+alembic upgrade head(or the hash)
+
