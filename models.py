@@ -10,4 +10,10 @@ class User(Base):
     password = Column(String)
 
 
+class Post(Base):
+    __tablename__ = "posts"
 
+    id = Column(Integer,primary_key=True,index=True)
+    title = Column(String)
+    description = Column(String)
+    
