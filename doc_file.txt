@@ -13,11 +13,11 @@ from models import Base
 target_metadata = Base.metadata
 ###################
 
-make the migrations from models 
+make the migrations from models:
 
 alembic revision --autogenerate -m "the message for migrations"
 
-migrate the migrations
+migrate the migrations:
 
 alembic upgrade head(or the hash)
 
