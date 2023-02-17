@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from models import Post
-from typing import Optional
+from typing import Optional,List
 from fastapi import Body
 
 # User schema
@@ -11,8 +11,8 @@ class UserBase(BaseModel):
 
 
 class UserCreate(UserBase):
-    password: str = Body(Ellipsis,
-                         min_length=8)
+    password: str = Body(Ellipsis,min_length=8)
+    t: List[str]
 
 
 class UserShow(UserBase):
@@ -40,5 +40,35 @@ class PostShow(PostCreate):
     class Config:
         orm_mode = True
 
+##################################
 
+# item schema
+class ItemBase(BaseModel):
+    title: str
+    person_id:int
+class ItemCreate(ItemBase):
+    pass
 
+class ItemShow(ItemBase):
+    id:int
+    # person: 
+
+    class Config:
+        orm_mode = True
+
+#############################
+
+# person schema
+
+class PersonBase(BaseModel):
+    name:str
+
+class PersonCreate(PersonBase):
+    pass
+
+class PersonShow(PersonBase):
+    id:int
+    items: List[ItemShow] = []
+
+    class Config:
+        orm_mode = True
