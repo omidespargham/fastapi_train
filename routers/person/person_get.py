@@ -1,19 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException, Query,Body
 from sqlalchemy.orm import Session
-from database import SessionLocal, engine
+from db.database import SessionLocal, engine
 import schema
-import models
-import database
+import db.models as models
+from db.database import get_db
 
 
 router = APIRouter(prefix="",tags=["person"])
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 @router.get("/get_person/{person_id}",response_model=schema.PersonShow)

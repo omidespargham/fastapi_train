@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from models import Post
+from db.models import Post
 from typing import Optional,List
 from fastapi import Body
 

@@ -1,20 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, Query,Body
 from sqlalchemy.orm import Session
-from database import SessionLocal, engine
 import schema
-import models
-import database
-# from two import get_db
+import db.models as models
+from db.database import get_db
 
 router = APIRouter(prefix="", tags=["user_post"])
 
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 @router.post("/create_post/", response_model=schema.PostShow, summary="Sakhte post !", description="in api baraye shoma post misazad", response_description="dar javab b shoma etelaate post ra br migardanad")
