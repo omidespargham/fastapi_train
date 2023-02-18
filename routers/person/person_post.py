@@ -4,7 +4,7 @@ from db.database import SessionLocal, engine
 import schema
 import db.models as models
 from db.database import get_db
-
+from db import person_db
 router = APIRouter(prefix="",tags=["person"])
 
         
@@ -21,13 +21,6 @@ def create_item(item:schema.ItemCreate,db:Session=Depends(get_db)):
 
 @router.post("/create_person",response_model=schema.PersonShow)
 def create_person(person:schema.PersonCreate,db:Session=Depends(get_db)):
-    obj = db.query(models.Person).filter(models.Person.name == person.name).first()
-    if obj:
-        raise HTTPException(status_code=404,detail="person exist with this name")
-    person_db = models.Person(name=person.name)
-    db.add(person_db)
-    db.commit()
-    db.refresh(person_db)
-    return person_db
+    return person_db.create_person(db,person)
 
 
