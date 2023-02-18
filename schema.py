@@ -12,7 +12,7 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     password: str = Body(Ellipsis,min_length=8)
-    t: List[str]
+    # t: List[str]
 
 
 class UserShow(UserBase):
