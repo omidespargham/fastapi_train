@@ -5,13 +5,15 @@ import db.models as models
 from db.database import get_db
 from typing import List
 from db import person_db
+from auth.oauth2 import oauth_scheme
+
 
 router = APIRouter(prefix="",tags=["person"])
 
 
 
 @router.get("/get_person/{person_id}",response_model=schema.PersonShow)
-def get_person(person_id:int,db:Session=Depends(get_db)):
+def get_person(person_id:int,db:Session=Depends(get_db),token:str=Depends(oauth_scheme)):
     return person_db.get_person(person_id,db)
     
 

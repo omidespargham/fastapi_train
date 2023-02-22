@@ -10,5 +10,5 @@ class Hash():
     
     @staticmethod
     def verify(hashed_password,plain_password):
-        pwd_cxt.verify(plain_password,hashed_password)
+        return pwd_cxt.verify(plain_password,hashed_password)
 
